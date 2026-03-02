@@ -7,20 +7,6 @@
 // ============================================================
 
 // ============================================================
-// MODE COMPACT
-// ============================================================
-
-const btnCompact = document.getElementById('btn-compact');
-let isCompact = false;
-
-btnCompact.addEventListener('click', () => {
-  isCompact = !isCompact;
-  document.body.classList.toggle('compact', isCompact);
-  btnCompact.textContent = isCompact ? '⊞' : '⊟';
-  btnCompact.title       = isCompact ? 'Mode complet' : 'Mode étroit';
-});
-
-// ============================================================
 // PHASES PÉDAGOGIQUES
 // ============================================================
 

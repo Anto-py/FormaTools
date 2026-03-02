@@ -95,6 +95,21 @@ Style **Rétrofuturisme** — humanité augmentée, années 70, pop-art.
 
 ---
 
+## Responsive
+
+Le panneau s'adapte à toutes les largeurs de sidebar sans aucun texte tronqué.
+
+| Largeur | Comportement |
+|---|---|
+| > 250px | Mise en page normale, 3 boutons de phase en grille |
+| ≤ 250px | Boutons de phase empilés en ligne (icône + label) |
+| ≤ 240px | Contrôles du minuteur et saisie Parking Lot empilés verticalement |
+| ≤ 180px | Logo masqué, paddings réduits au minimum |
+
+Toutes les tailles de texte, espacements et paddings utilisent `clamp()` pour une adaptation fluide entre les breakpoints. `white-space: normal` est appliqué sur tous les boutons pour contrecarrer le comportement `nowrap` par défaut du navigateur.
+
+---
+
 ## Contraintes techniques
 
 - **Manifest V3** — Service worker, API `chrome.sidePanel`

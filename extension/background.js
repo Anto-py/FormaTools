@@ -18,16 +18,19 @@ chrome.action.onClicked.addListener(async () => {
     }
   }
 
-  // Positionner en haut à droite de la fenêtre navigateur active
+  // Reproduire les dimensions et la position du panneau latéral Edge :
+  // pleine hauteur du navigateur, collé à droite
   const currentWin = await chrome.windows.getLastFocused();
-  const winLeft = (currentWin.left  ?? 0) + (currentWin.width  ?? 1280) - 340;
-  const winTop  = (currentWin.top   ?? 0) + 40;
+  const panelWidth  = 360;
+  const panelHeight = currentWin.height ?? 800;
+  const winLeft     = (currentWin.left ?? 0) + (currentWin.width ?? 1280) - panelWidth;
+  const winTop      = currentWin.top ?? 0;
 
   const panel = await chrome.windows.create({
     url:    chrome.runtime.getURL('sidepanel.html'),
     type:   'popup',
-    width:  320,
-    height: 640,
+    width:  panelWidth,
+    height: panelHeight,
     left:   Math.max(0, winLeft),
     top:    Math.max(0, winTop),
   });

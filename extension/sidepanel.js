@@ -6,6 +6,24 @@
 // PHASES PÉDAGOGIQUES
 // ============================================================
 
+// ============================================================
+// MODE COMPACT
+// ============================================================
+
+const btnCompact = document.getElementById('btn-compact');
+let isCompact = false;
+
+btnCompact.addEventListener('click', () => {
+  isCompact = !isCompact;
+  document.body.classList.toggle('compact', isCompact);
+  btnCompact.textContent = isCompact ? '⊞' : '⊟';
+  btnCompact.title       = isCompact ? 'Mode complet' : 'Mode compact';
+});
+
+// ============================================================
+// PHASES PÉDAGOGIQUES
+// ============================================================
+
 const phaseButtons = document.querySelectorAll('.phase-btn');
 let activePhase = null;
 

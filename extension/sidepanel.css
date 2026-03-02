@@ -80,6 +80,37 @@ body {
   letter-spacing: 0.2em;
   color: var(--retro-paper);
   text-transform: uppercase;
+  flex: 1;
+}
+
+.btn-compact {
+  background: none;
+  border: 1.5px solid rgba(242, 239, 230, 0.4);
+  border-radius: 5px;
+  color: var(--retro-paper);
+  font-size: 16px;
+  line-height: 1;
+  padding: 3px 7px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.btn-compact:hover {
+  opacity: 1;
+  background: rgba(242, 239, 230, 0.15);
+}
+
+/* ---- Mode compact ---- */
+body.compact #section-parking,
+body.compact .section-divider:last-of-type {
+  display: none;
+}
+
+body.compact .section {
+  padding-top: 12px;
+  padding-bottom: 10px;
 }
 
 /* ---------- Sections ---------- */

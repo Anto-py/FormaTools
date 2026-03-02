@@ -17,7 +17,7 @@ btnCompact.addEventListener('click', () => {
   isCompact = !isCompact;
   document.body.classList.toggle('compact', isCompact);
   btnCompact.textContent = isCompact ? '⊞' : '⊟';
-  btnCompact.title       = isCompact ? 'Mode complet' : 'Mode étroit — faites glisser le bord du panneau pour réduire sa largeur';
+  btnCompact.title       = isCompact ? 'Mode complet' : 'Mode étroit';
 });
 
 // ============================================================

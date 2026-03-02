@@ -46,6 +46,11 @@ html, body {
   height: 100%;
 }
 
+/* Le fond html remplit le panneau quand body est plus étroit */
+html {
+  background: var(--retro-ink);
+}
+
 body {
   background: var(--retro-ink);
   color: var(--retro-ink);
@@ -107,6 +112,12 @@ body {
    Masque le parking lot, réduit paddings et labels
    L'utilisateur fait glisser le bord du panneau en même temps
    ====================================================== */
+
+/* Contenu figé à 200 px — la zone vide est comblée par le fond ink de html */
+body.compact {
+  width: 200px;
+  overflow-x: hidden;
+}
 
 body.compact #section-parking,
 body.compact .section-divider:last-of-type {

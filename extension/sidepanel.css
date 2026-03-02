@@ -176,10 +176,30 @@ body {
   letter-spacing: 0.06em;
 }
 
-/* Étroit : masquer les labels de phase sous 230px */
-@media (max-width: 230px) {
-  .phase-label { display: none; }
-  .phase-btn   { padding: 10px 4px; }
+/* Étroit : passage en colonne verticale sous 250px
+   Les boutons deviennent des lignes (icône + label côte à côte) */
+@media (max-width: 250px) {
+  .phases-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .phase-btn {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px 12px;
+    gap: 12px;
+  }
+
+  .phase-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .phase-label {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
 }
 
 /* ============================================================

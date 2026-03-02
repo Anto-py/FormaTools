@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outils Formateur</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+
+  <!-- En-tête -->
+  <header class="app-header">
+    <span class="app-logo">❧</span>
+    <span class="app-title">OUTILS FORMATEUR</span>
+  </header>
+
+  <!-- Section 1 : Phase pédagogique -->
+  <section class="section" id="section-phases">
+    <h2 class="section-title">Phase pédagogique</h2>
+    <div class="phases-grid">
+      <button class="phase-btn" data-phase="observation">
+        <span class="phase-icon">👀</span>
+        <span class="phase-label">Observation</span>
+      </button>
+      <button class="phase-btn" data-phase="ecoute">
+        <span class="phase-icon">👂</span>
+        <span class="phase-label">Écoute</span>
+      </button>
+      <button class="phase-btn" data-phase="pratique">
+        <span class="phase-icon">🙌</span>
+        <span class="phase-label">Pratique</span>
+      </button>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Section 2 : Minuteur -->
+  <section class="section" id="section-timer">
+    <h2 class="section-title">Minuteur</h2>
+
+    <!-- État idle -->
+    <div id="timer-idle">
+      <div class="timer-input-row">
+        <input type="number" id="timer-duration" min="1" max="99" value="5" class="timer-input">
+        <span class="timer-unit">min</span>
+      </div>
+      <button class="btn-primary btn-full" id="btn-start">▶ Démarrer</button>
+    </div>
+
+    <!-- État actif / pause / fin -->
+    <div id="timer-active" class="hidden">
+      <div class="timer-display" id="timer-display">05:00</div>
+      <div class="timer-controls">
+        <button class="btn-secondary" id="btn-pause">⏸ Pause</button>
+        <button class="btn-ghost" id="btn-reset">↺ Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Section 3 : Parking Lot -->
+  <section class="section section-parking" id="section-parking">
+    <h2 class="section-title">Parking Lot</h2>
+    <div class="parking-input-row">
+      <input type="text" id="parking-input" placeholder="Question ou idée…" class="parking-text-input">
+      <button class="btn-primary btn-add" id="btn-add-parking" aria-label="Ajouter">+</button>
+    </div>
+    <ul class="parking-list" id="parking-list"></ul>
+  </section>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

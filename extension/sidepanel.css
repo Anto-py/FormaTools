@@ -1,0 +1,466 @@
+/* ============================================================
+   Outils Formateur — Side Panel
+   Charte : Rétrofuturisme v3.0
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;700&family=Inter:wght@400;600&display=swap');
+
+/* ---------- Variables ---------- */
+:root {
+  /* Palette rétrofuturiste */
+  --retro-teal:   #127676;
+  --retro-orange: #E4632E;
+  --retro-jaune:  #E3A535;
+  --retro-ink:    #0D1617;
+  --retro-paper:  #F2EFE6;
+
+  /* Mappings sémantiques */
+  --color-primary:        var(--retro-teal);
+  --color-accent:         var(--retro-orange);
+  --color-bg:             var(--retro-ink);
+  --color-surface:        var(--retro-paper);
+  --color-text:           var(--retro-ink);
+  --color-text-on-dark:   var(--retro-paper);
+  --color-phase-active:   var(--retro-orange);
+  --color-phase-inactive: transparent;
+  --color-timer-warning:  var(--retro-orange);
+  --color-timer-end:      var(--retro-orange);
+
+  /* Typographie */
+  --font-display: 'Anton', 'Impact', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  --font-ui:      'Oswald', 'Impact', 'Arial Narrow', sans-serif;
+  --font-main:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Timer */
+  --timer-size: 68px;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--retro-ink);
+  color: var(--retro-ink);
+  font-family: var(--font-main);
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  background: var(--retro-teal);
+  padding: 10px 16px;
+  border-bottom: 4px solid var(--retro-orange);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.app-logo {
+  color: var(--retro-jaune);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.app-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.2em;
+  color: var(--retro-paper);
+  text-transform: uppercase;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  background: var(--retro-paper);
+  padding: 14px 16px 14px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--retro-teal);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--retro-teal) 0%, transparent 100%);
+  opacity: 0.5;
+}
+
+/* ---------- Séparateur ---------- */
+.section-divider {
+  height: 3px;
+  background: var(--retro-orange);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   PHASES PÉDAGOGIQUES
+   ============================================================ */
+.phases-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.phase-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border: 2px solid var(--retro-teal);
+  border-radius: 8px;
+  background: var(--color-phase-inactive);
+  color: var(--retro-ink);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s, box-shadow 0.15s;
+  font-family: var(--font-main);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.phase-btn:hover {
+  background: rgba(227, 165, 53, 0.25);
+  border-color: var(--retro-jaune);
+}
+
+.phase-btn.active {
+  background: var(--retro-orange);
+  border-color: var(--retro-orange);
+  color: var(--retro-paper);
+  box-shadow: 0 0 0 3px rgba(228, 99, 46, 0.25);
+}
+
+.phase-btn.inactive {
+  opacity: 0.4;
+}
+
+.phase-icon {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.phase-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   MINUTEUR
+   ============================================================ */
+
+/* Idle */
+.timer-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.timer-input {
+  width: 80px;
+  padding: 6px 10px;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  border: 2px solid var(--retro-teal);
+  border-radius: 6px;
+  background: var(--retro-paper);
+  color: var(--retro-ink);
+  outline: none;
+  line-height: 1;
+  -moz-appearance: textfield;
+}
+
+.timer-input::-webkit-inner-spin-button,
+.timer-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.timer-input:focus {
+  border-color: var(--retro-orange);
+}
+
+.timer-unit {
+  font-family: var(--font-ui);
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--retro-teal);
+  letter-spacing: 0.05em;
+}
+
+/* Affichage actif */
+.timer-display {
+  font-family: var(--font-display);
+  font-size: var(--timer-size);
+  text-align: center;
+  color: var(--retro-teal);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 6px 0;
+  transition: color 0.4s ease;
+}
+
+.timer-display.warning {
+  color: var(--retro-orange);
+}
+
+.timer-display.ended {
+  color: var(--retro-orange);
+  animation: flash 0.7s ease 4;
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.15; }
+}
+
+.timer-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* ============================================================
+   BOUTONS
+   ============================================================ */
+.btn-primary {
+  background: var(--retro-orange);
+  color: var(--retro-paper);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background: var(--retro-jaune);
+  color: var(--retro-ink);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-secondary {
+  flex: 1;
+  background: var(--retro-teal);
+  color: var(--retro-paper);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-secondary:hover {
+  background: var(--retro-jaune);
+  color: var(--retro-ink);
+}
+
+.btn-ghost {
+  flex: 1;
+  background: transparent;
+  color: var(--retro-teal);
+  border: 2px solid var(--retro-teal);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-ghost:hover {
+  background: var(--retro-teal);
+  color: var(--retro-paper);
+}
+
+/* ============================================================
+   PARKING LOT
+   ============================================================ */
+.section-parking {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.parking-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.parking-text-input {
+  flex: 1;
+  padding: 10px 12px;
+  font-family: var(--font-main);
+  font-size: 15px;
+  border: 2px solid var(--retro-teal);
+  border-radius: 6px;
+  background: var(--retro-paper);
+  color: var(--retro-ink);
+  outline: none;
+}
+
+.parking-text-input:focus {
+  border-color: var(--retro-orange);
+}
+
+.parking-text-input::placeholder {
+  color: rgba(13, 22, 23, 0.4);
+}
+
+.btn-add {
+  width: 44px;
+  min-width: 44px;
+  padding: 0;
+  font-size: 22px;
+  font-weight: 400;
+  font-family: var(--font-main);
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.parking-list {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 2px;
+}
+
+.parking-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--retro-paper);
+  border: 2px solid var(--retro-teal);
+  border-radius: 8px;
+  padding: 10px 10px;
+  animation: slide-in 0.18s ease;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+
+.parking-item.projected {
+  border-color: var(--retro-orange);
+  box-shadow: 0 0 0 2px rgba(228, 99, 46, 0.2);
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.parking-item-text {
+  flex: 1;
+  font-size: 15px;
+  color: var(--retro-ink);
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.parking-item-project {
+  background: none;
+  border: 1.5px solid var(--retro-teal);
+  border-radius: 4px;
+  color: var(--retro-teal);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px 5px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  opacity: 0.7;
+}
+
+.parking-item-project:hover {
+  background: var(--retro-teal);
+  color: var(--retro-paper);
+  opacity: 1;
+}
+
+.parking-item-project.projected {
+  background: var(--retro-orange);
+  border-color: var(--retro-orange);
+  color: var(--retro-paper);
+  opacity: 1;
+}
+
+.parking-item-delete {
+  background: none;
+  border: none;
+  color: var(--retro-teal);
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.55;
+  transition: opacity 0.15s, color 0.15s;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.parking-item-delete:hover {
+  opacity: 1;
+  color: var(--retro-orange);
+}
+
+/* ---------- Utilitaires ---------- */
+.hidden {
+  display: none !important;
+}
